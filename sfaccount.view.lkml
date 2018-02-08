@@ -61,11 +61,6 @@ view: sfaccount {
     sql: ${TABLE}.billing_county__c ;;
   }
 
-  dimension: billing_county_c {
-    type: string
-    sql: ${TABLE}.billing_county_c ;;
-  }
-
   dimension: billingcity {
     type: string
     sql: ${TABLE}.billingcity ;;

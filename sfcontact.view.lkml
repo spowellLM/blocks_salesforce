@@ -308,20 +308,6 @@ view: sfcontact {
     sql: ${TABLE}.Clicked__C ;;
   }
 
-  dimension_group: clicked_c {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.clicked_c ;;
-  }
-
   dimension: collection_or_litigation_issue__c {
     type: string
     sql: ${TABLE}.Collection_Or_Litigation_Issue__C ;;
