@@ -39,4 +39,28 @@ explore: sfaccount {
     sql_on: ${sfaccount.id} = ${sfdeal.account_name__c} ;;
   }
 
+  join: owned_by {
+    relationship: one_to_one
+    sql_on: substring(${sfaccount.ownerid},1,15) = substring(${owned_by.emp_sf_id},1,15) ;;
+    fields: [owned_by.login_name]
+  }
+
+  join: created_by {
+    relationship: one_to_one
+    sql_on: substring(${sfaccount.createdbyid},1,15) = substring(${created_by.emp_sf_id},1,15) ;;
+    fields: [created_by.login_name]
+  }
+
+  join: last_modified_by {
+    relationship: one_to_one
+    sql_on: substring(${sfaccount.lastmodifiedbyid},1,15) = substring(${last_modified_by.emp_sf_id},1,15) ;;
+    fields: [last_modified_by.login_name]
+  }
+
+  join: last_contact_by {
+    relationship: one_to_one
+    sql_on: substring(${sfaccount.last_contact_by__c},1,15) = substring(${last_contact_by.emp_sf_id},1,15) ;;
+    fields: [last_contact_by.login_name]
+  }
+
 }
