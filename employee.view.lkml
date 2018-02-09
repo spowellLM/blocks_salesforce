@@ -187,3 +187,27 @@ view: last_contact_by {
     label: "Last Contact By"
   }
 }
+
+view: appointment_set_by {
+  extends: [employee]
+
+  dimension: login_name {
+    label: "Appointment Set By"
+  }
+}
+
+view: bus_int_completed_by__c {
+  extends: [employee]
+
+  dimension: login_name {
+    label: "Busness Intel Completed By"
+  }
+}
+
+view: demo_competed_by__c {
+  extends: [employee]
+
+  dimension: login_name {
+    label: "Demo Completed By"
+  }
+}

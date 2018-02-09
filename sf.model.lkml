@@ -22,6 +22,7 @@ explore: sfaccount {
   join: sfcontact{
     relationship:  many_to_one
     sql_on: ${sfaccount.id} = ${sfcontact.accountid} ;;
+
   }
 
   join: sfopportunity{
@@ -63,4 +64,79 @@ explore: sfaccount {
     fields: [last_contact_by.login_name]
   }
 
+}
+
+explore: sfcontact {
+  join: owned_by {
+    relationship: one_to_one
+    sql_on: substring(${sfcontact.ownerid},1,15) = substring(${owned_by.emp_sf_id},1,15) ;;
+    fields: [owned_by.login_name]
+  }
+
+  join: created_by {
+    relationship: one_to_one
+    sql_on: substring(${sfcontact.createdbyid},1,15) = substring(${created_by.emp_sf_id},1,15) ;;
+    fields: [created_by.login_name]
+  }
+
+  join: last_modified_by {
+    relationship: one_to_one
+    sql_on: substring(${sfcontact.lastmodifiedbyid},1,15) = substring(${last_modified_by.emp_sf_id},1,15) ;;
+    fields: [last_modified_by.login_name]
+  }
+}
+
+explore: sfopportunity {
+  join: owned_by {
+    relationship: one_to_one
+    sql_on: substring(${sfopportunity.owner_id},1,15) = substring(${owned_by.emp_sf_id},1,15) ;;
+    fields: [owned_by.login_name]
+  }
+
+  join: created_by {
+    relationship: one_to_one
+    sql_on: substring(${sfopportunity.created_by_id},1,15) = substring(${created_by.emp_sf_id},1,15) ;;
+    fields: [created_by.login_name]
+  }
+
+  join: last_modified_by {
+    relationship: one_to_one
+    sql_on: substring(${sfopportunity.last_modified_by_id},1,15) = substring(${last_modified_by.emp_sf_id},1,15) ;;
+    fields: [last_modified_by.login_name]
+  }
+}
+
+explore: sftask {
+  join: created_by {
+    relationship: one_to_one
+    sql_on: substring(${sftask.createdbyid},1,15) = substring(${created_by.emp_sf_id},1,15) ;;
+    fields: [created_by.login_name]
+  }
+
+  join: last_modified_by {
+    relationship: one_to_one
+    sql_on: substring(${sftask.lastmodifiedbyid},1,15) = substring(${last_modified_by.emp_sf_id},1,15) ;;
+    fields: [last_modified_by.login_name]
+  }
+
+}
+
+explore: sfdeal {
+  join: appointment_set_by {
+    relationship: one_to_one
+    sql_on: substring(${sfdeal.appointment_set_by__c},1,15) = substring(${appointment_set_by.emp_sf_id},1,15) ;;
+    fields: [appointment_set_by.login_name]
+  }
+
+  join: bus_int_completed_by__c {
+    relationship: one_to_one
+    sql_on: substring(${sfdeal.bus_int_completed_by__c},1,15) = substring(${bus_int_completed_by__c.emp_sf_id},1,15) ;;
+    fields: [bus_int_completed_by__c.login_name]
+  }
+
+  join: demo_competed_by__c {
+    relationship: one_to_one
+    sql_on: substring(${sfdeal.demo_competed_by__c},1,15) = substring(${demo_competed_by__c.emp_sf_id},1,15) ;;
+    fields: [demo_competed_by__c.login_name]
+  }
 }
