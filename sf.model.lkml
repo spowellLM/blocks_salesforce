@@ -20,6 +20,7 @@ include: "*.dashboard.lookml"  # include all dashboards in this project
 
 explore: sfaccount {
   label: "Account"
+  view_label: "Account"
   from: sfaccount
 
   join: sfcontact{
@@ -70,6 +71,7 @@ explore: sfaccount {
 
 explore: sfcontact {
   label: "Contact"
+  view_label: "Contact"
 
   join: sfaccount {
     view_label: "Account"
@@ -101,6 +103,7 @@ explore: sfcontact {
 
 explore: sfopportunity {
   label: "Opportunity"
+  view_label: "Opportunity"
 
   join: sfaccount {
     view_label: "Account"
@@ -154,6 +157,7 @@ explore: sfopportunity {
 
 explore: sfdeal {
   label: "Deal"
+  view_label: "Deal"
 
   join: sfaccount{
     view_label: "Account"
