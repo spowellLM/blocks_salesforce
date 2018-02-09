@@ -57,13 +57,6 @@ explore: sfaccount {
     sql_on: substring(${sfaccount.lastmodifiedbyid},1,15) = substring(${last_modified_by.emp_sf_id},1,15) ;;
     fields: [last_modified_by.login_name]
   }
-
-  join: last_contact_by {
-    relationship: one_to_one
-    sql_on: substring(${sfaccount.last_contact_by__c},1,15) = substring(${last_contact_by.emp_sf_id},1,15) ;;
-    fields: [last_contact_by.login_name]
-  }
-
 }
 
 explore: sfcontact {
@@ -119,24 +112,4 @@ explore: sftask {
     fields: [last_modified_by.login_name]
   }
 
-}
-
-explore: sfdeal {
-  join: appointment_set_by {
-    relationship: one_to_one
-    sql_on: substring(${sfdeal.appointment_set_by__c},1,15) = substring(${appointment_set_by.emp_sf_id},1,15) ;;
-    fields: [appointment_set_by.login_name]
-  }
-
-  join: bus_int_completed_by__c {
-    relationship: one_to_one
-    sql_on: substring(${sfdeal.bus_int_completed_by__c},1,15) = substring(${bus_int_completed_by__c.emp_sf_id},1,15) ;;
-    fields: [bus_int_completed_by__c.login_name]
-  }
-
-  join: demo_competed_by__c {
-    relationship: one_to_one
-    sql_on: substring(${sfdeal.demo_competed_by__c},1,15) = substring(${demo_competed_by__c.emp_sf_id},1,15) ;;
-    fields: [demo_competed_by__c.login_name]
-  }
 }
