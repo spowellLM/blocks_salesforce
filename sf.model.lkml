@@ -18,25 +18,67 @@ include: "*.dashboard.lookml"  # include all dashboards in this project
 #   }
 # }
 
-explore: sfaccount {
+explore: Account {
+  from: sfaccount
+
   join: sfcontact{
     relationship:  many_to_one
-    sql_on: ${sfaccount.id} = ${sfcontact.accountid} ;;
+    sql_on: ${Account.id} = ${sfcontact.accountid} ;;
   }
 
   join: sfopportunity{
     relationship:  many_to_one
-    sql_on: ${sfaccount.id} = ${sfopportunity.account_id} ;;
+    sql_on: ${Account.id} = ${sfopportunity.account_id} ;;
   }
 
   join: sftask{
     relationship:  many_to_one
-    sql_on: ${sfaccount.id} = ${sftask.accountid} ;;
+    sql_on: ${Account.id} = ${sftask.accountid} ;;
   }
 
   join: sfdeal{
     relationship:  many_to_one
-    sql_on: ${sfaccount.id} = ${sfdeal.account_name__c} ;;
+    sql_on: ${sfopportunity.id} = ${sfdeal.opportunity__c} ;;
+  }
+}
+
+explore: Opportunity {
+  from: sfopportunity
+
+  # join: sfcontact{
+  #   relationship:  many_to_one
+  #   sql_on: ${sfaccount.id} = ${sfcontact.accountid} ;;
+  # }
+
+  join: sfaccount {
+    relationship: one_to_one
+    foreign_key: Opportunity.account_id
+
   }
 
+  join: sfdeal{
+    relationship:  many_to_one
+    sql_on: ${Opportunity.id} = ${sfdeal.opportunity__c} ;;
+  }
+
+
+  # join: sftask{
+  #   relationship:  many_to_one
+  #   sql_on: ${sfaccount.id} = ${sftask.accountid} ;;
+  # }
+
+}
+
+explore: Deal {
+  from: sfdeal
+
+  join: sfaccount{
+    relationship:  many_to_one
+    foreign_key: Deal.account_name__c
+  }
+
+  join: sfopportunity {
+    relationship: many_to_one
+    foreign_key: Deal.opportunity__c
+  }
 }
