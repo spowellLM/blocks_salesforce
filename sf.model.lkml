@@ -222,21 +222,30 @@ explore: sfopportunity {
   }
 }
 
-# commenting this one out for now, will put back in and flesh out later
-# explore: sftask {
-#   join: created_by {
-#     relationship: one_to_one
-#     sql_on: substring(${sftask.createdbyid},1,15) = substring(${created_by.emp_sf_id},1,15) ;;
-#     fields: [created_by.login_name]
-#   }
-#
-#   join: last_modified_by {
-#     relationship: one_to_one
-#     sql_on: substring(${sftask.lastmodifiedbyid},1,15) = substring(${last_modified_by.emp_sf_id},1,15) ;;
-#     fields: [last_modified_by.login_name]
-#   }
-#
-# }
+
+explore: sftask {
+  label: "Task"
+  view_label: "Task"
+
+  join: sfaccount {
+    view_label: "Account"
+    relationship: many_to_one
+    foreign_key: sftask.accountid
+  }
+
+  join: created_by {
+    relationship: one_to_one
+    sql_on: substring(${sftask.createdbyid},1,15) = substring(${created_by.emp_sf_id},1,15) ;;
+    fields: [created_by.login_name]
+  }
+
+  join: last_modified_by {
+    relationship: one_to_one
+    sql_on: substring(${sftask.lastmodifiedbyid},1,15) = substring(${last_modified_by.emp_sf_id},1,15) ;;
+    fields: [last_modified_by.login_name]
+  }
+
+}
 
 explore: sfdeal {
   label: "Deal"
